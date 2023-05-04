@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css");
+
+/* Estilo para el encabezado */
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 600px;
+  background-size: 100%;
+  background-image: url("https://www.lanacion.com.ar/resizer/v2/al-hombre-le-tiraron-al-menos-tres-veces-en-la-QMTAC2E3VZDTPIXWD2SKU7ALYA.jpg?auth=ec56bef437b7f67e413e0405d0ed7fd6d34993ce18dc509c62be6d09a43f8d87&width=1200&height=800&quality=80&smart=false");
+}
+/*navbar*/
+.navbar {
+  color: black;
+}
+
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-brand img {
+  max-height: 100px;
+  margin: 0 auto;
+  display: block;
+  border: solid 2px #000;
+}
+div.header {
+  display: inline;
+}
+div.carrito {
+  margin-left: 48%;
+}
+div.carrito span,
+div.carrito p {
+  font-size: medium;
+}
+
+/* Estilo para la sección de bienvenida */
+.mi-bloque {
+  background-color: #000;
+  width: 50%;
+  margin: auto;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 10px 6px 6px rgba(1, 1, 1, 0.221);
+}
+.tituloBienvenida {
+  text-align: center;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  background-color: black;
+  color: white;
+  text-shadow: 2px 2px 4px red;
+}
+
+.tituloAbonos {
+  text-align: center;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  background-color: black;
+  color: white;
+  text-shadow: 2px 2px 4px red;
+}
+input#filterAbonos:focus {
+  border-color: red;
+  color: white;
+}
+.barra-busqueda {
+  border: solid 2px black;
+  margin: 20px;
+}
+.container-card {
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Estilo para la sección de abonos del 2023 */
+.abonos2023 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+/* Estilo para el pie de página */
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  padding: 2rem;
+  margin-top: 4rem;
+  font-size: 2rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+}
+.card-abonos {
+  display: flexbox;
+  margin: 10px;
+  margin-bottom: 40px;
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 10px 6px 6px rgba(3, 3, 3, 0.221);
+  width: 200px;
+  height: 250px;
+  background-color: white;
+}
+
+.card-abonos:hover {
+  background-color: white;
+  transition: 0.5s ease-in;
+  box-shadow: 5px 20px 60px rgba(213, 4, 4, 0.519);
+}
+
+.card-abonos div.nombre,
+.card-abonos div.importe {
+  height: 100px;
+  font-size: 20px;
+}
+
+button {
+  font-size: 16px;
+  width: 100px;
+  padding: 10px;
+}
+
+button,
+button:not(:hover) {
+  background-color: rgb(2, 2, 2);
+  border-color: black;
+}
+
+button:hover {
+  background-color: rgb(202, 31, 12);
+  color: whitesmoke;
+  border-color: black;
+}
+
+button:active {
+  background-color: black;
+  color: whitesmoke;
+  border-color: black;
+}
+
+.wobble-hor-bottom {
+  animation: wobble-hor-bottom 0.8s both;
+}
+
+@-webkit-keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+@keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
