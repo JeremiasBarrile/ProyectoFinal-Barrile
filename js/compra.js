@@ -1,48 +1,47 @@
 const tbody = document.querySelector("tbody")
-const spanTotal = document.querySelector("span")
-const btnComprar = document.querySelector("#btnComprar")
-
-recuperarCarrito()
+const totalAbon = document.querySelector("span")
+const botonComprar = document.querySelector("#botonComprar")
+volverCarro()
 cargarCarrito()
 
 function cargarCarrito() {
     tbody.innerHTML = ""
     if (carrito.length > 0) {
-        carrito.forEach(producto => tbody.innerHTML += retornoFilaCheckoutHTML(producto) )
-        activarClickEnBotonesDelete()
-        spanTotal.innerText = calcularTotalCarrito().toLocaleString()
+        carrito.forEach(abonos => tbody.innerHTML += devuelvoCarritoCompras(abonos) )
+        botonEliminarClick()
+        totalAbon.innerText = calPrecioAbonos().toLocaleString()
     } else {
-        spanTotal.innerText = "0.00"
+        totalAbon.innerText = "0.00"
         tbody.innerHTML = ""
     }
 }
 
-function calcularTotalCarrito() {
-    return carrito.reduce((acc, producto)=> acc + producto.precio, 0)
+function calPrecioAbonos() {
+    return carrito.reduce((acc, abono)=> acc + abono.precio, 0)
 }
 
-function activarClickEnBotonesDelete() {
-    const botones = document.querySelectorAll("button.button-outline")
+function botonEliminarClick() {
+    const botones = document.querySelectorAll("button.botonSeguirComprando")
     if (botones) {
         for (let boton of botones) {
             boton.addEventListener("click", (e)=> {
-                let indice = carrito.findIndex((prod)=> prod.id === parseInt(e.target.id))
-                    if (indice > -1) {
-                        carrito.splice(indice, 1) //elimino el producto del carrito
-                        guardarCarrito()          //actualizo carrito en LocalStorage
-                        cargarCarrito()           //refresco el carrito en pantalla
+                let idc = carrito.findIndex((abn)=> abn.codigo === parseInt(e.target.codigo))
+                    if (idc > -1) {
+                        carrito.splice(idc, 1) 
+                        carritoLS()          
+                        cargarCarrito()          
                     }
             })
         }
     }
 }
 
-btnComprar.addEventListener("click", ()=> {
+botonComprar.addEventListener("click", ()=> {
     Swal.fire({title: 'Muchas gracias por su compra.', 
                icon: 'success', 
                confirmButtonText: 'Aceptar'
              })                                 //Agradezco la compra realizada.
     carrito.length = 0                          //reseteo la constante carrito
-    localStorage.removeItem("carritoFrutas")    //Vacío localStorage
+    localStorage.removeItem("carritoAbonos")    //Vacío localStorage
     cargarCarrito()
 })

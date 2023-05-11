@@ -1,15 +1,20 @@
 const container = document.querySelector(".container-card");
 const totalCarrito = document.querySelector("span");
 const filtradorDeAbonos = document.querySelector("input#filterAbonos");
-const carritoAbonos = volverCarro();
 const abonos = [];
 const URL = 'js/variables.json'
 
-fetch(URL)
-        .then((respuesta)=> respuesta.json())
-        .then((data)=> abonos.push(...data))
-        .then(()=> cargarAbonos(abonos))
-        .catch((error)=> container.innerHTML = retornoCardError())
+async function obtenerProductosAsync() {
+  try {
+      const rta = await fetch(URL)
+      const data = await rta.json()
+          abonos.push(...data)
+          cargarAbonos(abonos)
+  } catch (error) {
+      console.log(error)
+      container.innerHTML = retornoCardError()
+  }
+}
 
 function filtrarAbonos(value) {
   let rta = abonos.filter((abono) =>
@@ -22,32 +27,14 @@ filtradorDeAbonos.addEventListener("keyup", (e) => {
   filtrarAbonos(e.target.value);
 });
 
-function returnCardHTML(abono) {
-  let { imagen,nombre, importe, codigo } = abono;
-  return `
-    <div class="card-abonos">
-      <div class="nombre">${nombre}</div>
-      <div class="importe">$ ${importe}</div>
-      <div class="comprar"><button class="boton-card" id="${codigo}">Comprar</button></div>
-    </div>
-  `;
-}
-const retornoCardError = ()=> {
-  return `<div class="card-error">
-              <h2>Houston, tenemos un problema 🔌</h2>
-              <h3>No pudimos cargar los productos. 🤦🏻‍♂️</h3>
-              <h3>Intenta nuevamente en unos instantes...</h3>
-          </div>`}
-
 function cantidadAbonosComprar() {
-  totalCarrito.textContent = carritoAbonos.length;
+  totalCarrito.textContent = abonos.length;
 }
-
 cantidadAbonosComprar();
 
-function cargarAbonos(abono) {
+function cargarAbonos(abonos) {
   container.innerHTML = "";
-  abono.forEach((abono) => {
+  abonos.forEach((abono) => {
     container.innerHTML += returnCardHTML(abono);
   });
   botonClick();
@@ -66,12 +53,21 @@ function botonClick() {
     }
   }
 }
-function carritoLS() {
-  localStorage.setItem("carAbon", JSON.stringify(carritoAbonos));
-}
-function volverCarro() {
-  return JSON.parse(localStorage.getItem("carAbon")) || [];
+function notificar() {
+  Toastify({
+      text: "El producto ha sido agregado al carrito.",
+      className: "info",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: "center",
+      style: {
+        background: "blue"
+      }
+    }).showToast();
 }
 
-cargarAbonos(abonos);
+obtenerProductosAsync();
 volverCarro();
+
+vinculoIcono.addEventListener("click", ()=> location.href = "compra.html")

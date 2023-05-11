@@ -4,7 +4,7 @@ function returnCardHTML(abono) {
       <div class="card-abonos">
         <div class="nombre">${nombre}</div>
         <div class="importe">$ ${importe}</div>
-        <div class="comprar"><button class="boton-card" id="${codigo}">Comprar</button></div>
+        <div class="comprar"><button class="boton-card button-outline button-add" id="${codigo}">Comprar</button></div>
       </div>
     `;
   }
@@ -15,10 +15,10 @@ function returnCardHTML(abono) {
                 <h3>Intenta nuevamente en unos instantes...</h3>
             </div>`}
             
-// const retornoFilaCheckoutHTML = (producto)=> {
-//               return `<tr>
-//                           <td>${producto.imagen}</td>
-//                           <td>${producto.nombre}</td>
-//                           <td>${producto.precio}</td>
-//                           <td><button id="${producto.id}" class="button-outline">X</button></td>
-//                       </tr>`}
+const devuelvoCarritoCompras = (abono)=> {
+  let {nombre,importe,codigo} = abono;
+              return `<tr>
+                          <td>${nombre}</td>
+                          <td>${importe}</td>
+                          <td><button id="${codigo}" class="button-outline">X</button></td>
+                      </tr>`}

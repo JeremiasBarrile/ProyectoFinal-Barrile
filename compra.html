@@ -7,22 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/storage.js"></script>
-    <script src="js/templates.js"></script>
-    <script defer src="js/checkout.js"></script>
+    
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="js/funcionesGuardado.js"></script>
+    <script src="js/generadorHtml.js"></script>
+    <script defer src="js/compra.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
-        <h1>Manda Fruta .com</h1>
-        <p>Verifica tus productos antes de confirmar la compra:</p>
+        <nav class="navbar bg-dark bg-body-tertiary">
+          <div class="container">
+            <a class="navbar-brand" href="#" id="nob">
+              <img src="imagenes/images newells.png" alt="logo" />
+            </a>
+          </div>
+          <div class="carrito">
+            <a class="vinculoIcono" href="compra.html"><i class="fa-solid fa-cart-shopping fa-2x"></a></i><span>0</span>
+          </div>        
+        </nav>
+      </header>
+    <main>
+        <section class="secCarrito">
+            <h1>Newells Old Boys</h1>
+        <p>Revisa que esten todos tus Abonos</p>
         <div class="centrar-div">
-            <button class="button button-outline"><a href="index.html">Seguir comprando</a></button> 
+            <button class="button botonSeguirComprando"><a href="index.html">Seguir comprando</a></button> 
         </div>
         <hr>
-    </header>
-    <main>
-        <section>
+            <section>
             <table>
                 <thead>
                     <tr>
@@ -33,7 +58,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Carga dinámica de carrito -->
+                    
                 </tbody>
             </table>
         </section>
@@ -41,8 +66,17 @@
             <p>Total: $ <span>0.00</span></p>
         </div>
         <div class="centrar-div">
-            <button class="button" id="btnComprar">COMPRAR</button>
+            <button class="button" id="botonComprar">COMPRAR</button>
         </div>
+    </section>
     </main>
+    <footer>
+        <p>&copy; Newell's Old Boys</p>
+      </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>

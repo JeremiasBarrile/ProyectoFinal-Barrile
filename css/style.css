@@ -213,3 +213,16 @@ button:active {
     transform: translateX(-6px) rotate(-1.2deg);
   }
 }
+.secCarrito{
+  background-color: #fff;
+  color:black;
+  width: 50%;
+  margin: auto;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 10px 6px 6px rgba(1, 1, 1, 0.221)
+}
