@@ -32,9 +32,9 @@ function cantidadAbonosComprar() {
 }
 cantidadAbonosComprar();
 
-function cargarAbonos(abonos) {
+function cargarAbonos(array) {
   container.innerHTML = "";
-  abonos.forEach((abono) => {
+  array.forEach((abono) => {
     container.innerHTML += returnCardHTML(abono);
   });
   botonClick();
@@ -46,9 +46,10 @@ function botonClick() {
     for (const boton of botones) {
       boton.addEventListener("click", () => {
         let resp = abonos.find((abono) => abono.codigo === parseInt(boton.id));
-        carritoAbonos.push(resp);
+        abonos.push(resp);
         cantidadAbonosComprar();
         carritoLS();
+        notificar()
       });
     }
   }
@@ -69,5 +70,3 @@ function notificar() {
 
 obtenerProductosAsync();
 volverCarro();
-
-vinculoIcono.addEventListener("click", ()=> location.href = "compra.html")
