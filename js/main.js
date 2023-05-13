@@ -1,20 +1,28 @@
-const container = document.querySelector(".container-card");
-const totalCarrito = document.querySelector("span");
-const filtradorDeAbonos = document.querySelector("input#filterAbonos");
+const container = document.querySelector("div.container#container");
+const botonDeCarro = document.querySelector("div.btn-checkout");
+const filtradorDeAbonos = document.querySelector("#filterAbonos");
+const URL = "js/lista.json";
 const abonos = [];
-const URL = 'js/variables.json'
 
-async function obtenerProductosAsync() {
+async function conseguirAbonos() {
   try {
-      const rta = await fetch(URL)
-      const data = await rta.json()
-          abonos.push(...data)
-          cargarAbonos(abonos)
+    const response = await fetch(URL);
+    const data = await response.json();
+    abonos.push(...data);
+    cargarAbonos(abonos);
   } catch (error) {
-      console.log(error)
-      container.innerHTML = retornoCardError()
+    console.log(error);
+    container.innerHTML = ErrorCargaHTML();
   }
 }
+
+const cargarAbonos = (lista) => {
+  container.innerHTML = "";
+  lista.forEach((abono) => {
+    container.innerHTML += bloqueHTML(abono);
+  });
+  botonClick();
+};
 
 function filtrarAbonos(value) {
   let rta = abonos.filter((abono) =>
@@ -27,46 +35,28 @@ filtradorDeAbonos.addEventListener("keyup", (e) => {
   filtrarAbonos(e.target.value);
 });
 
-function cantidadAbonosComprar() {
-  totalCarrito.textContent = abonos.length;
-}
-cantidadAbonosComprar();
-
-function cargarAbonos(array) {
-  container.innerHTML = "";
-  array.forEach((abono) => {
-    container.innerHTML += returnCardHTML(abono);
-  });
-  botonClick();
-}
-
-function botonClick() {
-  const botones = document.querySelectorAll(".boton-card");
-  if (botones !== null) {
-    for (const boton of botones) {
-      boton.addEventListener("click", () => {
-        let resp = abonos.find((abono) => abono.codigo === parseInt(boton.id));
-        abonos.push(resp);
-        cantidadAbonosComprar();
-        carritoLS();
-        notificar()
-      });
-    }
+const botonClick = () => {
+  const botones = document.querySelectorAll(".botonDeTarjetas");
+  for (boton of botones) {
+    boton.addEventListener("click", (e) => {
+      let resp = abonos.find((abono) => abono.codigo === parseInt(e.target.id));
+      saveCarritoLS(resp);
+      abonoAgregado();
+    });
   }
-}
-function notificar() {
+};
+
+function abonoAgregado() {
   Toastify({
-      text: "El producto ha sido agregado al carrito.",
-      className: "info",
-      duration: 3000,
-      close: true,
-      gravity: "top",
-      position: "center",
-      style: {
-        background: "blue"
-      }
-    }).showToast();
+    text: "El abono ha sido agregado al carrito.",
+    className: "info",
+    duration: 2000,
+    gravity: "top",
+    position: "right",
+  }).showToast();
 }
 
-obtenerProductosAsync();
-volverCarro();
+conseguirAbonos();
+recCarroLS();
+
+botonDeCarro.addEventListener("click", () => (location.href = "compra.html"));
