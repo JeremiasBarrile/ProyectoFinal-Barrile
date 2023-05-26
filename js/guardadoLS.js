@@ -1,14 +1,17 @@
 const saveCarritoLS = (abonoSeleccionado) => {
-    localStorage.setItem(abonoSeleccionado.codigo, JSON.stringify(abonoSeleccionado))
+    let carritoActual = recCarroLS();
+    carritoActual.push(abonoSeleccionado)
+    localStorage.setItem("carrito",JSON.stringify(carritoActual));
   };
   
   const recCarroLS = () => {
-      let recCarrito = [];
-     Object.keys(localStorage).forEach(key => {
-          let item = JSON.parse(localStorage.getItem(key)) 
-          recCarrito.push(item)
-     })
-      return recCarrito;
-  };
-  
+    let recCarrito = localStorage.getItem("carrito")
+    if (recCarrito === null){
+        return []
+    }
+   return JSON.parse(recCarrito);
+  }
+  function vaciarCarrito(){
+    localStorage.setItem("carrito",JSON.stringify([]))
+  }
   const carrito = recCarroLS();

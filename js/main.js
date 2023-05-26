@@ -1,6 +1,8 @@
-const container = document.querySelector("div.container#container");
+const container = document.querySelector("div.container-card#abonos2023");
 const botonDeCarro = document.querySelector("div.btn-checkout");
 const filtradorDeAbonos = document.querySelector("#filterAbonos");
+var modal = document.getElementById("myModal");
+ var btn = document.getElementById("myBtn");
 const URL = "js/lista.json";
 const abonos = [];
 
@@ -24,6 +26,7 @@ const cargarAbonos = (lista) => {
   botonClick();
 };
 
+
 function filtrarAbonos(value) {
   let rta = abonos.filter((abono) =>
     abono.nombre.toLocaleLowerCase().includes(value.toLocaleLowerCase())
@@ -40,23 +43,16 @@ const botonClick = () => {
   for (boton of botones) {
     boton.addEventListener("click", (e) => {
       let resp = abonos.find((abono) => abono.codigo === parseInt(e.target.id));
-      saveCarritoLS(resp);
-      abonoAgregado();
+      const input = document.querySelector(`input[name='${resp.codigo}']`) 
+      console.log(input)
+      let cantidad = input.value;
+      for(let key = 0;key < cantidad;key ++){
+         saveCarritoLS(resp);
+      }
     });
   }
 };
 
-function abonoAgregado() {
-  Toastify({
-    text: "El abono ha sido agregado al carrito.",
-    className: "info",
-    duration: 2000,
-    gravity: "top",
-    position: "right",
-  }).showToast();
-}
-
 conseguirAbonos();
 recCarroLS();
 
-botonDeCarro.addEventListener("click", () => (location.href = "compra.html"));

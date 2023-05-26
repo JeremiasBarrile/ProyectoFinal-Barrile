@@ -4,6 +4,12 @@ function bloqueHTML(abono) {
     <div class="card-abonos">
       <div class="nombre">${nombre}</div>
       <div class="importe">$ ${importe}</div>
+      <span class="abonosCant"> 
+       <label >cantidad:</label>
+      <input  name="${codigo}" type="number" min= "0"> </input>
+  
+      </span>
+     
       <div class="comprar"><button class="botonDeTarjetas" id="${codigo}">Comprar</button></div>
     </div>
   `;
@@ -17,7 +23,7 @@ const ErrorCargaHTML= ()=> {
 const devuelvoCarritoCompras = (abono)=> {
   return `<tr>
   <td>${abono.nombre}</td>
-  <td>${abono.importe}</td>
+  <td style="text-align:right">${abono.importe}</td>
   <td><button id="${abono.codigo}" class="boton-eliminar">Eliminar</button></td>
 </tr>`
 }
